@@ -2,25 +2,21 @@ var https = require('https');
 
 function getAndPrintHTML(){
   var requestOptions = {
-
-    host : 'syntrantris.github.io',
-    paths: '/http-examples/step1.html'
+    host: 'sytantris.github.io',
+    path: '/http-examples/step2.html'
   };
 
-  https.get(requestOptions, function(response){
+  var newData = "";
+  https.get(getAndPrintHTML, function(response){
 
-  response.setEncoding('utf8');
+    response.setEncoding('utf8');
 
-  response.on('data', function(data){
-    var newData = [];
-    for(var i = 0; i < data.length; i ++){
-    newData.push(("New Data Recieved. Length: " + data[i].length + "/n" + data[i]))
-    }
-    console.log(newData)
+    response.on('data', function(data){
+      newData += data;
   });
 
   response.on("end", function(){
-    console.log("Response Stream Complete")
+    console.log(newData);
     });
   });
 }
