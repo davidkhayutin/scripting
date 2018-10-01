@@ -4,22 +4,23 @@ function getAndPrintHTMLChunks (){
 
   var requestOptions = {
 
-    host : 'syntrantris.github.io'
+    host : 'syntrantris.github.io',
     paths: '/http-examples/step1.html'
   };
 
 https.get(requestOptions, function(response){
 
-  response.setEnconding('utf8');
+  response.setEncoding('utf8');
 
   response.on('data', function(data){
-    console.log('Chunck Recieved. Length:', data.length);
+    console.log('Chunck Recieved. Length:', data.length + '/n' + data);
   });
 
-  response.om("end", function(){
+  response.on("end", function(){
     console.log("Response Stream Complete")
-  }
+  })
 
 })
-
 }
+
+getAndPrintHTMLChunks();
